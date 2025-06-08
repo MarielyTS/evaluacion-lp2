@@ -1,0 +1,12 @@
+com\cibertec\pregunta1\model\Pelicula.class
+com\cibertec\pregunta1\util\JPAUtil.class
+com\cibertec\pregunta1\dao\ClienteDAO.class
+com\cibertec\pregunta1\model\Cliente.class
+com\cibertec\pregunta1\model\DetalleAlquiler.class
+com\cibertec\App.class
+com\cibertec\pregunta1\dao\AlquilerDAO.class
+com\cibertec\pregunta1\model\EstadoAlquiler.class
+com\cibertec\pregunta1\dao\PeliculaDAO.class
+com\cibertec\pregunta1\dao\DetalleAlquilerDAO.class
+com\cibertec\pregunta1\model\Alquiler.class
+com\cibertec\pregunta1\model\DetalleAlquiler$DetalleAlquilerId.class
