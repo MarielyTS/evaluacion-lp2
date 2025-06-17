@@ -8,12 +8,12 @@ public class AlquilerDAO {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("BD2_ApellidoPU");
 
     public void insertar(Alquiler alquiler) {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.persist(alquiler);
-        em.getTransaction().commit();
-        em.close();
-    }
+    EntityManager em = emf.createEntityManager();
+    em.getTransaction().begin();
+    em.merge(alquiler); // <- evita el error de detached entity
+    em.getTransaction().commit();
+    em.close();
+}
 
     public Alquiler buscarPorId(int id) {
         EntityManager em = emf.createEntityManager();
