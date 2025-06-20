@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Formulario de Alquiler</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body class="bg-dark text-white">
+    <div class="container mt-5">
+        <h2 th:text="${alquiler.idAlquiler == null} ? 'Nuevo Alquiler' : 'Editar Alquiler'"></h2>
+
+        <form th:action="@{/alquileres/guardar}" th:object="${alquiler}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Cliente:</label>
+                <select th:field="*{cliente.idCliente}">
+                    <option value="" disabled selected>Seleccione un cliente</option>
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.idCliente}" th:text="${cliente.nombre}">
+                    </option>
+                </select>
+
+                <div class="text-danger" th:if="${#fields.hasErrors('cliente')}" th:errors="*{cliente}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Fecha:</label>
+                <input type="date" class="form-control" th:field="*{fecha}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Estado:</label>
+                <select class="form-select" th:field="*{estado}">
+                    <option th:each="estado : ${T(com.blockbuster.model.EstadoAlquiler).values()}" th:value="${estado}"
+                        th:text="${estado}">Estado</option>
+                </select>
+            </div>
+
+            <div class="mt-3">
+                <button type="submit" class="btn btn-success">Procesar</button>
+                <a th:href="@{/alquileres}" class="btn btn-light">Volver a la lista</a>
+            </div>
+        </form>
+
+        <div th:if="${mensaje}" class="alert alert-success mt-3" th:text="${mensaje}"></div>
+    </div>
+</body>
+
+</html>

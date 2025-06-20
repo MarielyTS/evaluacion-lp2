@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Alquileres</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Alquileres</h1>
+
+    <a th:href="@{/alquileres/nuevo}">Nuevo Alquiler</a>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="alquiler : ${alquileres}">
+                <td th:text="${alquiler.idAlquiler}">1</td>
+                <td th:text="${alquiler.fecha}">2025-06-20</td>
+                <td th:text="${alquiler.cliente.nombre}">Cliente</td>
+                <td th:text="${alquiler.total}">0.00</td>
+                <td th:text="${alquiler.estado}">ACTIVO</td>
+                <td>
+                    <a th:href="@{'/alquileres/editar/' + ${alquiler.idAlquiler}}">Editar</a>
+                    |
+                    <a th:href="@{'/alquileres/eliminar/' + ${alquiler.idAlquiler}}" 
+                       onclick="return confirm('¿Estás seguro de eliminar este alquiler?');">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
