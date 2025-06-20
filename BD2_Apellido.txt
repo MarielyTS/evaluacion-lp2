@@ -1,34 +1,30 @@
-CREATE DATABASE BD2_Apellido;
-USE BD2_Apellido;
+CREATE DATABASE BD_T2_APELLIDO;
+USE BD_T2_APELLIDO;
 
 CREATE TABLE clientes (
-    id_cliente INT PRIMARY KEY,
+    id_cliente BIGINT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL
 );
 
-INSERT INTO clientes VALUES (1, 'Maria Torres', 'marieli140795@gmail.com'), (2, 'Claudia Torres', 'clato@gmail.com'), (3, 'Charmander Torres', 'char@gmail.com');
-
 CREATE TABLE peliculas (
-    id_pelicula INT PRIMARY KEY,
+    id_pelicula BIGINT AUTO_INCREMENT,
     titulo VARCHAR(100),
     genero VARCHAR(50),
     stock INT
 );
 
-INSERT INTO peliculas VALUES (1, 'Titanic', 'Drama', 20), (2, 'Star Wars', 'Ciencia ficción', 3), (3, 'La era del hielo', 'Animación', 7);
-
 CREATE TABLE alquileres (
-    id_alquiler INT AUTO_INCREMENT PRIMARY KEY,
+    id_alquiler BIGINT AUTO_INCREMENT PRIMARY KEY,
     fecha DATE,
-    id_cliente INT,
+    id_cliente BIGINT,
     total DECIMAL(10,2),
     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
 
 CREATE TABLE detalle_alquiler (
-    id_alquiler INT,
-    id_pelicula INT,
+    id_alquiler BIGINT,
+    id_pelicula BIGINT,
     cantidad INT,
     PRIMARY KEY (id_alquiler, id_pelicula),
     FOREIGN KEY (id_alquiler) REFERENCES alquileres(id_alquiler),
